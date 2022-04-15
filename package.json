@@ -1,0 +1,23 @@
+{
+  "name": "challenge-weekend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test-pa-mi": "jest --watchAll",
+    "test": "jest",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "sass": "^1.50.0"
+  }
+}
