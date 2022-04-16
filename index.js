@@ -22,6 +22,21 @@ const allCells = (cellGrid) => {
   return allCellsGrid;
 };
 
+const cellsGridHTML = (cellGrid) => {
+  const newGrid = document.createElement("table");
+  for (let xPosition = 0; xPosition < cellGrid; xPosition++) {
+    const newColumn = document.createElement("td");
+    for (let yPosition = 0; yPosition < cellGrid; yPosition++) {
+      const newCell = document.createElement("tr");
+      newCell.setAttribute("id", `${xPosition}, ${yPosition}`);
+      newColumn.appendChild(newCell);
+    }
+    newGrid.appendChild(newColumn);
+  }
+  const currentDiv = document.getElementById("CellsGridHTML");
+  document.body.insertBefore(newGrid, currentDiv);
+};
+
 const cells = allCells(20);
 
 const checkNeighbours = (cellGrid) => {
@@ -172,6 +187,7 @@ const checkNextCellStatus = (cellGrid) => {
 };
 
 const gridWidth = 20;
+cellsGridHTML();
 allCells(gridWidth);
 checkNeighbours(cells);
 checkNextCellStatus(cells);
