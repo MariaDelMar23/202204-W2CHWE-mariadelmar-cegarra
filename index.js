@@ -21,4 +21,75 @@ const allCells = (cellGrid) => {
   return allCellsGrid;
 };
 
-allCells(20);
+const checkNeighbours = (cells) => {
+  for (let xPosition = 0; xPosition < Math.sqrt(cells.length); xPosition++) {
+    for (let yPosition = 0; yPosition < Math.sqrt(cells.length); yPosition++) {
+      const cellNow = cells.find(
+        (cell) => cell.x === xPosition && cell.y === yPosition
+      );
+      let aliveCells = 0;
+      if (
+        cells.find((cell) => cell.x === xPosition - 1 && cell.y === yPosition)
+          .status
+      ) {
+        aliveCells++;
+      }
+      if (
+        cells.find((cell) => cell.x === xPosition + 1 && cell.y === yPosition)
+          .status
+      ) {
+        aliveCells++;
+      }
+      if (
+        cells.find((cell) => cell.x === xPosition && cell.y === yPosition - 1)
+          .status
+      ) {
+        aliveCells++;
+      }
+      if (
+        cells.find((cell) => cell.x === xPosition && cell.y === yPosition + 1)
+          .status
+      ) {
+        aliveCells++;
+      }
+      if (
+        cells.find((cell) => cell.x === xPosition - 1 && cell.y === yPosition)
+          .status
+      ) {
+        aliveCells++;
+      }
+      if (
+        cells.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition - 1
+        ).status
+      ) {
+        aliveCells++;
+      }
+      if (
+        cells.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition + 1
+        ).status
+      ) {
+        aliveCells++;
+      }
+      if (
+        cells.find(
+          (cell) => cell.x === xPosition + 1 && cell.y === yPosition - 1
+        ).status
+      ) {
+        aliveCells++;
+      }
+      if (
+        cells.find(
+          (cell) => cell.x === xPosition + 1 && cell.y === yPosition + 1
+        ).status
+      ) {
+        aliveCells++;
+      }
+      cellNow.aliveCells = aliveCells;
+    }
+  }
+};
+
+checkNeighbours();
+allCells();
