@@ -50,7 +50,7 @@ const checkNeighbours = (cellGrid) => {
       }
       if (
         typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          (cell) => cell.x === xPosition + 1 && cell.y === yPosition
         ) !== "undefined"
       ) {
         if (
@@ -63,7 +63,7 @@ const checkNeighbours = (cellGrid) => {
       }
       if (
         typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          (cell) => cell.x === xPosition && cell.y === yPosition - 1
         ) !== "undefined"
       ) {
         if (
@@ -76,7 +76,7 @@ const checkNeighbours = (cellGrid) => {
       }
       if (
         typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          (cell) => cell.x === xPosition && cell.y === yPosition + 1
         ) !== "undefined"
       ) {
         if (
@@ -89,20 +89,7 @@ const checkNeighbours = (cellGrid) => {
       }
       if (
         typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition - 1 && cell.y === yPosition
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
-      }
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition - 1
         ) !== "undefined"
       ) {
         if (
@@ -115,7 +102,7 @@ const checkNeighbours = (cellGrid) => {
       }
       if (
         typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition + 1
         ) !== "undefined"
       ) {
         if (
@@ -128,7 +115,7 @@ const checkNeighbours = (cellGrid) => {
       }
       if (
         typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          (cell) => cell.x === xPosition + 1 && cell.y === yPosition - 1
         ) !== "undefined"
       ) {
         if (
@@ -141,7 +128,7 @@ const checkNeighbours = (cellGrid) => {
       }
       if (
         typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          (cell) => cell.x === xPosition + 1 && cell.y === yPosition + 1
         ) !== "undefined"
       ) {
         if (
