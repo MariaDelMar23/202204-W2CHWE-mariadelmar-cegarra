@@ -2,6 +2,7 @@ class Cell {
   x;
   y;
   status = false;
+  aliveNeighbours;
 
   constructor(x, y) {
     this.x = x;
@@ -27,69 +28,93 @@ const checkNeighbours = (cells) => {
       const cellNow = cells.find(
         (cell) => cell.x === xPosition && cell.y === yPosition
       );
-      let aliveCells = 0;
+      let aliveNeighbours = 0;
       if (
         cells.find((cell) => cell.x === xPosition - 1 && cell.y === yPosition)
           .status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
       if (
         cells.find((cell) => cell.x === xPosition + 1 && cell.y === yPosition)
           .status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
       if (
         cells.find((cell) => cell.x === xPosition && cell.y === yPosition - 1)
           .status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
       if (
         cells.find((cell) => cell.x === xPosition && cell.y === yPosition + 1)
           .status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
       if (
         cells.find((cell) => cell.x === xPosition - 1 && cell.y === yPosition)
           .status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
       if (
         cells.find(
           (cell) => cell.x === xPosition - 1 && cell.y === yPosition - 1
         ).status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
       if (
         cells.find(
           (cell) => cell.x === xPosition - 1 && cell.y === yPosition + 1
         ).status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
       if (
         cells.find(
           (cell) => cell.x === xPosition + 1 && cell.y === yPosition - 1
         ).status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
       if (
         cells.find(
           (cell) => cell.x === xPosition + 1 && cell.y === yPosition + 1
         ).status
       ) {
-        aliveCells++;
+        aliveNeighbours++;
       }
-      cellNow.aliveCells = aliveCells;
+      cellNow.aliveCells = aliveNeighbours;
     }
   }
 };
 
-checkNeighbours();
+const checkNextCellStatus = (cells) => {
+  for (let xPosition = 0; xPosition < Math.sqrt(cells.length); xPosition++) {
+    for (let yPosition = 0; yPosition < Math.sqrt(cells.length); yPosition++) {
+      const cellNow = cells.find(
+        (cell) => cell.x === xPosition && cell.y === yPosition
+      );
+      if (cellNow.status) {
+        if (cellNow.aliveNeighbours < 2) {
+          cellNow.status = false;
+        }
+        if (cellNow.aliveNeighbours > 3) {
+          cellNow.status = false;
+        }
+      }
+      if (!cellNow.status) {
+        if (cellNow.aliveNeighbours === 3) {
+          cellNow.status = true;
+        }
+      }
+    }
+  }
+};
+
 allCells();
+checkNeighbours();
+checkNextCellStatus();
