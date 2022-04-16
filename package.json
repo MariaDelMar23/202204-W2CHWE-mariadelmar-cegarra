@@ -7,7 +7,7 @@
     "test-pa-mi": "jest --watchAll",
     "test": "jest",
     "sass": "sass sass/style.scss css/style.css",
-    "compile-sass": "sass sass/style.scss css/style.css --watch"
+    "compile-sass": "sass sass/style.scss css/style.css --watch",
     "prepare": "husky install"
   },
   "keywords": [],
