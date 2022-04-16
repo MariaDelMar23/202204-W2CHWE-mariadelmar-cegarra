@@ -22,80 +22,149 @@ const allCells = (cellGrid) => {
   return allCellsGrid;
 };
 
-const checkNeighbours = (cells) => {
-  for (let xPosition = 0; xPosition < Math.sqrt(cells.length); xPosition++) {
-    for (let yPosition = 0; yPosition < Math.sqrt(cells.length); yPosition++) {
-      const cellNow = cells.find(
+const cells = allCells(20);
+
+const checkNeighbours = (cellGrid) => {
+  for (let xPosition = 0; xPosition < Math.sqrt(cellGrid.length); xPosition++) {
+    for (
+      let yPosition = 0;
+      yPosition < Math.sqrt(cellGrid.length);
+      yPosition++
+    ) {
+      const cellNow = cellGrid.find(
         (cell) => cell.x === xPosition && cell.y === yPosition
       );
       let aliveNeighbours = 0;
       if (
-        cells.find((cell) => cell.x === xPosition - 1 && cell.y === yPosition)
-          .status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       if (
-        cells.find((cell) => cell.x === xPosition + 1 && cell.y === yPosition)
-          .status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition + 1 && cell.y === yPosition
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       if (
-        cells.find((cell) => cell.x === xPosition && cell.y === yPosition - 1)
-          .status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition && cell.y === yPosition - 1
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       if (
-        cells.find((cell) => cell.x === xPosition && cell.y === yPosition + 1)
-          .status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition && cell.y === yPosition + 1
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       if (
-        cells.find((cell) => cell.x === xPosition - 1 && cell.y === yPosition)
-          .status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       if (
-        cells.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition - 1
-        ).status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition - 1 && cell.y === yPosition - 1
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       if (
-        cells.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition + 1
-        ).status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition - 1 && cell.y === yPosition + 1
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       if (
-        cells.find(
-          (cell) => cell.x === xPosition + 1 && cell.y === yPosition - 1
-        ).status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition + 1 && cell.y === yPosition - 1
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       if (
-        cells.find(
-          (cell) => cell.x === xPosition + 1 && cell.y === yPosition + 1
-        ).status
+        typeof cellGrid.find(
+          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
+        ) !== "undefined"
       ) {
-        aliveNeighbours++;
+        if (
+          cellGrid.find(
+            (cell) => cell.x === xPosition + 1 && cell.y === yPosition + 1
+          ).status
+        ) {
+          aliveNeighbours++;
+        }
       }
       cellNow.aliveCells = aliveNeighbours;
     }
   }
 };
 
-const checkNextCellStatus = (cells) => {
-  for (let xPosition = 0; xPosition < Math.sqrt(cells.length); xPosition++) {
-    for (let yPosition = 0; yPosition < Math.sqrt(cells.length); yPosition++) {
-      const cellNow = cells.find(
+const checkNextCellStatus = (cellGrid) => {
+  for (let xPosition = 0; xPosition < Math.sqrt(cellGrid.length); xPosition++) {
+    for (
+      let yPosition = 0;
+      yPosition < Math.sqrt(cellGrid.length);
+      yPosition++
+    ) {
+      const cellNow = cellGrid.find(
         (cell) => cell.x === xPosition && cell.y === yPosition
       );
       if (cellNow.status) {
@@ -115,6 +184,7 @@ const checkNextCellStatus = (cells) => {
   }
 };
 
-allCells();
-checkNeighbours();
-checkNextCellStatus();
+const gridWidth = 20;
+allCells(gridWidth);
+checkNeighbours(cells);
+checkNextCellStatus(cells);
