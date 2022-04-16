@@ -186,8 +186,8 @@ const checkNextCellStatus = (cellGrid) => {
   }
 };
 
-const gridWidth = 20;
-cellsGridHTML();
+const gridWidth = document.getElementById("gridWidth").value;
+cellsGridHTML(gridWidth);
 allCells(gridWidth);
 checkNeighbours(cells);
 checkNextCellStatus(cells);
