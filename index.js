@@ -186,8 +186,20 @@ const checkNextCellStatus = (cellGrid) => {
   }
 };
 
-const gridWidth = document.getElementById("gridWidth").value;
-cellsGridHTML(gridWidth);
-allCells(gridWidth);
-checkNeighbours(cells);
-checkNextCellStatus(cells);
+const stopLife = () => false;
+
+const createGrid = () => {
+  const gridWidth = document.getElementById("gridWidth").value;
+  cellsGridHTML(gridWidth);
+  allCells(gridWidth);
+};
+
+const startLife = () => {
+  do {
+    checkNeighbours(cells);
+    checkNextCellStatus(cells);
+  } while (stopLife());
+};
+
+createGrid();
+startLife();

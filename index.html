@@ -9,12 +9,26 @@
   </head>
   <body>
     <h1>Juego de la vida</h1>
-    <form action="submit">
-      <label for="cellGrid">Intruce el ancho del bioma y disfruta</label>
-      <input type="text" placeholder="Valor entre 3 y 100" id="gridWidth" />
-      <input type="submit" />
-      <div id="cellsGridHTML"></div>
+    <form class="takeWidth">
+      <label class="takeWisth__label" for="gridWidth" for="cellGrid"
+        >Intruce el ancho del bioma y disfruta</label
+      >
+      <input
+        class="takeWidth__input-text"
+        type="text"
+        placeholder="Valor entre 3 y 100"
+        id="gridWidth"
+      />
+      <button onclick="createGrid()" type="submit">Crear</button>
     </form>
+    <div>
+      <div class="cellsGrid" id="cellsGridHTML"></div>
+      <button onclick="startLife()">Que empiece la vida!</button>
+    </div>
+    <div>
+      <button onclick="stopLife()">Parar el tiempo</button>
+    </div>
+
     <table></table>
   </body>
 </html>
