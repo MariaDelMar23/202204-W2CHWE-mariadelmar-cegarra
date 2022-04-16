@@ -33,7 +33,7 @@ const cellsGridHTML = (cellGrid) => {
     }
     newGrid.appendChild(newColumn);
   }
-  const currentDiv = document.getElementById("CellsGridHTML");
+  const currentDiv = document.getElementById("cellsGridHTML");
   document.body.insertBefore(newGrid, currentDiv);
 };
 
@@ -190,8 +190,8 @@ const stopLife = () => false;
 
 const createGrid = () => {
   const gridWidth = document.getElementById("gridWidth").value;
-  cellsGridHTML(gridWidth);
   allCells(gridWidth);
+  cellsGridHTML(gridWidth);
 };
 
 const startLife = () => {
