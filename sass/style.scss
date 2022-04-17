@@ -27,8 +27,8 @@
     background-color: #7fefea;
     padding: 10px;
     border: none;
-    &:invalid{
-      background-color: #F36464;
+    &:invalid {
+      background-color: #f36464;
     }
   }
   &__button {
@@ -44,7 +44,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin:30px;
+  margin: 30px;
   &__table {
     display: flex;
     justify-content: center;
@@ -131,7 +131,7 @@
   );
   background-size: 1800% 1800%;
   background-attachment: fixed, scroll;
-   background-repeat: no-repeat;
+  background-repeat: no-repeat;
 
   -webkit-animation: rainbow 18s ease infinite;
   -z-animation: rainbow 18s ease infinite;
