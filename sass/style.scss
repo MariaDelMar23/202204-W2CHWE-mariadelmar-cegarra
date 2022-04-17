@@ -42,13 +42,13 @@
       color: aqua;
       width: 20px;
       height: 20px;
-      &--alive{
-        background-color: #ca9df2;
-        border-radius: 10px;
-      }
-      &--dead{
-        background-color: transparent;
-      }
+    }
+    .td--alive {
+      background-color: #ca9df2;
+      border-radius: 10px;
+    }
+    .td--dead {
+      background-color: transparent;
     }
   }
 }

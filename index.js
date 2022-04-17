@@ -25,12 +25,9 @@ const allCells = (cellGrid) => {
 };
 
 function bornCellsClick() {
-  const cellClicked = this.id.split(",");
-  const xPositionClicked = parseInt(cellClicked[0], 10);
-  const yPositionClicked = parseInt(cellClicked[1], 10);
-  const cellToLive = cells.find(
-    (cell) => cell.x === xPositionClicked && cell.y === yPositionClicked
-  );
+  const cellClicked = this.id.split("_");
+  const indexClicked = parseInt(cellClicked[0], 10);
+  const cellToLive = cells[indexClicked];
   if (this.className === "td--dead") {
     this.className = "td--alive";
     cellToLive.status = true;
@@ -47,11 +44,12 @@ const cellsGridHTML = (cellGrid) => {
   }
   const newGrid = document.createElement("table");
   newGrid.setAttribute("id", "cellGridContainer");
+  let cellIndex = 0;
   for (let xPosition = 0; xPosition < cellGrid; xPosition++) {
     const newColumn = document.createElement("tr");
     for (let yPosition = 0; yPosition < cellGrid; yPosition++) {
       const newCell = document.createElement("td");
-      newCell.setAttribute("id", `${xPosition}, ${yPosition}`);
+      newCell.setAttribute("id", `${cellIndex++}_${xPosition}, ${yPosition}`);
       newCell.setAttribute("class", "td--dead");
       newCell.onclick = bornCellsClick;
       newColumn.appendChild(newCell);
@@ -63,165 +61,78 @@ const cellsGridHTML = (cellGrid) => {
 };
 
 const checkNeighbours = (cellGrid) => {
-  for (let xPosition = 0; xPosition < Math.sqrt(cellGrid.length); xPosition++) {
-    for (
-      let yPosition = 0;
-      yPosition < Math.sqrt(cellGrid.length);
-      yPosition++
-    ) {
-      const cellNow = cellGrid.find(
-        (cell) => cell.x === xPosition && cell.y === yPosition
-      );
-      let aliveNeighbours = 0;
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition - 1 && cell.y === yPosition
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
+  const cellGridWidth = Math.sqrt(cellGrid.length);
+  for (let index = 0; index < cellGrid.length; index++) {
+    const cellNow = cellGrid[index];
+    let aliveNeighbours = 0;
+    if (typeof cellGrid[index - 1] !== "undefined") {
+      if (cellGrid[index - 1].status) {
+        aliveNeighbours++;
       }
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition + 1 && cell.y === yPosition
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition + 1 && cell.y === yPosition
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
-      }
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition && cell.y === yPosition - 1
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition && cell.y === yPosition - 1
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
-      }
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition && cell.y === yPosition + 1
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition && cell.y === yPosition + 1
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
-      }
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition - 1
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition - 1 && cell.y === yPosition - 1
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
-      }
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition - 1 && cell.y === yPosition + 1
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition - 1 && cell.y === yPosition + 1
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
-      }
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition + 1 && cell.y === yPosition - 1
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition + 1 && cell.y === yPosition - 1
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
-      }
-      if (
-        typeof cellGrid.find(
-          (cell) => cell.x === xPosition + 1 && cell.y === yPosition + 1
-        ) !== "undefined"
-      ) {
-        if (
-          cellGrid.find(
-            (cell) => cell.x === xPosition + 1 && cell.y === yPosition + 1
-          ).status
-        ) {
-          aliveNeighbours++;
-        }
-      }
-      cellNow.aliveNeighbours = aliveNeighbours;
     }
+    if (typeof cellGrid[index - cellGridWidth] !== "undefined") {
+      if (cellGrid[index - cellGridWidth].status) {
+        aliveNeighbours++;
+      }
+    }
+
+    if (typeof cellGrid[index + 1] !== "undefined") {
+      if (cellGrid[index + 1].status) {
+        aliveNeighbours++;
+      }
+    }
+
+    if (typeof cellGrid[index + cellGridWidth] !== "undefined") {
+      if (cellGrid[index + cellGridWidth].status) {
+        aliveNeighbours++;
+      }
+    }
+
+    if (typeof cellGrid[index - cellGridWidth - 1] !== "undefined") {
+      if (cellGrid[index - cellGridWidth - 1].status) {
+        aliveNeighbours++;
+      }
+    }
+
+    if (typeof cellGrid[index - cellGridWidth + 1] !== "undefined") {
+      if (cellGrid[index - cellGridWidth + 1].status) {
+        aliveNeighbours++;
+      }
+    }
+    if (typeof cellGrid[index + cellGridWidth - 1] !== "undefined") {
+      if (cellGrid[index + cellGridWidth - 1].status) {
+        aliveNeighbours++;
+      }
+    }
+    if (typeof cellGrid[index + cellGridWidth + 1] !== "undefined") {
+      if (cellGrid[index + cellGridWidth + 1].status) {
+        aliveNeighbours++;
+      }
+    }
+    cellNow.aliveNeighbours = aliveNeighbours;
   }
 };
 
 const checkNextCellStatus = (cellGrid) => {
-  for (let xPosition = 0; xPosition < Math.sqrt(cellGrid.length); xPosition++) {
-    for (
-      let yPosition = 0;
-      yPosition < Math.sqrt(cellGrid.length);
-      yPosition++
-    ) {
-      const cellNow = cellGrid.find(
-        (cell) => cell.x === xPosition && cell.y === yPosition
-      );
-      if (cellNow.status) {
-        if (cellNow.aliveNeighbours < 2) {
-          cellNow.status = false;
-          document
-            .getElementById(`${xPosition}, ${yPosition}`)
-            .classList.remove("td--alive");
-          document
-            .getElementById(`${xPosition}, ${yPosition}`)
-            .classList.add("td--dead");
-        }
-        if (cellNow.aliveNeighbours > 3) {
-          cellNow.status = false;
-          document
-            .getElementById(`${xPosition}, ${yPosition}`)
-            .classList.remove("td--alive");
-          document
-            .getElementById(`${xPosition}, ${yPosition}`)
-            .classList.add("td--dead");
-        }
+  for (let index = 0; index < cellGrid.length; index++) {
+    const cellNow = cellGrid[index];
+    if (cellNow.status) {
+      if (cellNow.aliveNeighbours < 2) {
+        cellNow.status = false;
+        document.querySelector(`[id^='${index}']`).classList.remove("td--alive");
+        document.querySelector(`[id^='${index}']`).classList.add("td--dead");
       }
-      if (!cellNow.status) {
-        if (cellNow.aliveNeighbours === 3) {
-          cellNow.status = true;
-          document
-            .getElementById(`${xPosition}, ${yPosition}`)
-            .classList.remove("td--dead");
-          document
-            .getElementById(`${xPosition}, ${yPosition}`)
-            .classList.add("td--alive");
-        }
+      if (cellNow.aliveNeighbours > 3) {
+        cellNow.status = false;
+        document.querySelector(`[id^='${index}']`).classList.remove("td--alive");
+        document.querySelector(`[id^='${index}']`).classList.add("td--dead");
+      }
+    }
+    if (!cellNow.status) {
+      if (cellNow.aliveNeighbours === 3) {
+        cellNow.status = true;
+        document.querySelector(`[id^='${index}']`).classList.remove("td--dead");
+        document.querySelector(`[id^='${index}']`).classList.add("td--alive");
       }
     }
   }
@@ -236,7 +147,7 @@ const stopLife = () => {
   }
 };
 
-const executionTime = 50;
+const executionTime = 100;
 
 const createGrid = () => {
   const gridWidth = document.getElementById("gridWidth").value;
