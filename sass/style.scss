@@ -1,3 +1,17 @@
 * {
   box-sizing: border-box;
 }
+ 
+.cellsGrid{
+  &__table{
+    table{
+      border-spacing: 0;
+    }
+    td{
+      border: 0.5px solid;
+      color:aqua;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

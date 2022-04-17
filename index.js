@@ -19,25 +19,37 @@ const allCells = (cellGrid) => {
       allCellsGrid.push(cellPosition);
     }
   }
-  return allCellsGrid;
+  return allCellsGrid
+};
+
+function bornCellsClick(){
+  const cellClicked = this.id.split(",");
+  const xPositionClicked = parseInt(cellClicked[0], 10);
+  const yPositionClicked = parseInt(cellClicked[1], 10);
+  const cellToLive = allCells.find((cell) => cell.x === xPositionClicked && cell.y === yPositionClicked);
+  cellToLive.status = true
 };
 
 const cellsGridHTML = (cellGrid) => {
+  const initialGrid = document.getElementById("cellGridContainer");
+  if (initialGrid !== null) {
+    initialGrid.innerHTML = "";
+  }
   const newGrid = document.createElement("table");
+  newGrid.setAttribute("id", "cellGridContainer");
   for (let xPosition = 0; xPosition < cellGrid; xPosition++) {
-    const newColumn = document.createElement("td");
+    const newColumn = document.createElement("tr");
     for (let yPosition = 0; yPosition < cellGrid; yPosition++) {
-      const newCell = document.createElement("tr");
+      const newCell = document.createElement("td");
       newCell.setAttribute("id", `${xPosition}, ${yPosition}`);
+      newCell.onclick = bornCellsClick;
       newColumn.appendChild(newCell);
     }
     newGrid.appendChild(newColumn);
   }
   const currentDiv = document.getElementById("cellsGridHTML");
-  document.body.insertBefore(newGrid, currentDiv);
+  currentDiv.appendChild(newGrid);
 };
-
-const cells = allCells(20);
 
 const checkNeighbours = (cellGrid) => {
   for (let xPosition = 0; xPosition < Math.sqrt(cellGrid.length); xPosition++) {
@@ -195,6 +207,8 @@ const createGrid = () => {
 };
 
 const startLife = () => {
+  const gridWidth = document.getElementById("gridWidth").value;
+  const cells = allCells(gridWidth);
   do {
     checkNeighbours(cells);
     checkNextCellStatus(cells);

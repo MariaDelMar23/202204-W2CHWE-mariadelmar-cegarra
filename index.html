@@ -5,30 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="index.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <title>Juego de la Vida</title>
   </head>
   <body>
-    <h1>Juego de la vida</h1>
-    <form class="takeWidth">
-      <label class="takeWisth__label" for="gridWidth" for="cellGrid"
-        >Intruce el ancho del bioma y disfruta</label
-      >
-      <input
-        class="takeWidth__input-text"
-        type="text"
-        placeholder="Valor entre 3 y 100"
-        id="gridWidth"
-      />
-      <button onclick="createGrid()" type="button">Crear</button>
-    </form>
-    <div>
-      <div class="cellsGrid" id="cellsGridHTML"></div>
-      <button onclick="startLife()">Que empiece la vida!</button>
-    </div>
-    <div>
-      <button onclick="stopLife()">Parar el tiempo</button>
-    </div>
-
+    <main class="container">
+      <h1 class="title">Juego de la vida</h1>
+      <section class="takeWidth">
+        <label class="takeWisth__label" for="gridWidth" for="cellGrid"
+          >Intruce el ancho del bioma y disfruta</label
+        >
+        <input
+          class="takeWidth__input-text"
+          type="text"
+          placeholder="Valor entre 3 y 100"
+          id="gridWidth"
+        />
+        <button onclick="createGrid()" type="button">Crear</button>
+      </section>
+      <div class="cellsGrid">
+        <div class="cellsGrid__table" id="cellsGridHTML"></div>
+        <button class="cellsGrid__button--startLife" onclick="startLife()">Que empiece la vida!</button>
+        <button class="cellsGrid__button--stopLife" onclick="stopLife()">Parar el tiempo</button>
+      </div>
+    </main>
     <table></table>
   </body>
 </html>
