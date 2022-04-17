@@ -8,15 +8,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .title {
-    font-size: 40px;
-  }
 }
 
 .takeWidth {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 175px;
+  .title {
+    font-size: 40px;
+    text-align: center;
+  }
   &__label {
     font-size: 25px;
     margin: 20px;
@@ -25,6 +27,9 @@
     background-color: #7fefea;
     padding: 10px;
     border: none;
+    &:invalid{
+      background-color: #F36464;
+    }
   }
   &__button {
     background-color: #ca9df2;
@@ -39,17 +44,29 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin:30px;
   &__table {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
     table {
       border-spacing: 0;
+      border: 2px solid;
+      color: rgba(0, 0, 0, 0.6);
+      flex-wrap: nowrap;
       td {
+        flex-wrap: nowrap;
         border: 0.5px solid;
         color: rgba(0, 0, 0, 0.6);
-        width: 35px;
-        height: 35px;
+        width: 25px;
+        height: 25px;
+        padding: 0;
+        margin: 0;
       }
       .td--alive:before {
-        content: url("images/catCell.png");
+        content: url(../images/catCell.png);
+        padding: 0;
+        margin: 0;
         display: flex;
         justify-content: center;
       }
@@ -77,6 +94,9 @@
         &--backMenu {
           background-color: #7fefea;
         }
+        &--randomize {
+          background-color: #ca9df2;
+        }
       }
     }
   }
@@ -91,13 +111,11 @@
 }
 
 .wrapper {
-  height: 200vh;
-  width: 100vw;
+  height: 100%;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  position: absolute;
   background: linear-gradient(
     124deg,
     #ff2400,
@@ -112,6 +130,8 @@
     #dd00f3
   );
   background-size: 1800% 1800%;
+  background-attachment: fixed, scroll;
+   background-repeat: no-repeat;
 
   -webkit-animation: rainbow 18s ease infinite;
   -z-animation: rainbow 18s ease infinite;

@@ -12,21 +12,21 @@
     />
     <script src="index.js"></script>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/catCell.png" type="image/x-icon" />
     <title>Juego de la Vida</title>
   </head>
-  <body>
-    <main class="container wrapper">
-      <h1 class="title">Juego de la vida</h1>
+  <body class="wrapper">
+    <main class="container">
       <section id="mainMenu" class="takeWidth">
+        <h1 class="title">Juego de la vida</h1>
         <label class="takeWidth__label" for="gridWidth" for="cellGrid"
           >Intruce el ancho del bioma y disfruta</label
         >
         <input
           class="takeWidth__input-text"
           type="text"
-          placeholder="Valor entre 3 y 100"
-          id="gridWidth"
+          placeholder="Valor entre 3 y 80"
+          id="gridWidth" pattern="^[0-9]*$"
         />
         <button class="takeWidth__button" id="createGrid" type="button">
           Crear
@@ -36,13 +36,28 @@
         <div class="cellsGrid__table" id="cellsGridHTML"></div>
         <table></table>
         <div class="cellsGrid__buttons" id="buttons">
-          <button class="buttons__button buttons__button--startLife" id="startLife">
+          <button
+            class="buttons__button buttons__button--randomize"
+            id="randomize"
+          >
+            Aleatorios
+          </button>
+          <button
+            class="buttons__button buttons__button--startLife"
+            id="startLife"
+          >
             Que empiece la vida!
           </button>
-          <button class="buttons__button buttons__button--stopLife" id="stopLife">
+          <button
+            class="buttons__button buttons__button--stopLife"
+            id="stopLife"
+          >
             Parar el tiempo
           </button>
-          <button class="buttons__button buttons__button--backMenu" id="backMenu">
+          <button
+            class="buttons__button buttons__button--backMenu"
+            id="backMenu"
+          >
             Volver al menu
           </button>
         </div>
