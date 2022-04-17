@@ -155,7 +155,7 @@ const startLife = () => {
 const stopLife = () => {
   if (stop) {
     stop = false;
-    document.getElementById("stopLife").innerHTML = "Parar";
+    document.getElementById("stopLife").innerHTML = "Parar el tiempo";
     startLife();
   } else {
     stop = true;
@@ -171,7 +171,7 @@ const createGrid = () => {
   // }else if (gridWidth > 0 && gridWidth < 100){
   cells = allCells(gridWidth);
   cellsGridHTML(gridWidth);
-  document.getElementById("buttons").style.display = "block";
+  document.getElementById("buttons").style.display = "flex";
   document.getElementById("mainMenu").style.display = "none";
   stop = false;
   // }
@@ -183,7 +183,7 @@ const backMenu = () => {
   document.getElementById("cellGridContainer").remove();
   stop = true;
   document.getElementById("startLife").style.display = "";
-  document.getElementById("stopLife").innerHTML = "Parar";
+  document.getElementById("stopLife").innerHTML = "Parar el tiempo";
   document.getElementById("gridWidth").value = "";
   document.getElementById("stopLife").style.display = "none";
 };
