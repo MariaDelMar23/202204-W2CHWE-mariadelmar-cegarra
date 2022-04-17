@@ -149,6 +149,7 @@ const startLife = () => {
     checkNextCellStatus(cells);
     document.getElementById("startLife").style.display = "none";
     document.getElementById("stopLife").style.display = "inline";
+    document.getElementById("randomize").style.display = "none";
   }
 };
 
@@ -165,16 +166,14 @@ const stopLife = () => {
 };
 
 const createGrid = () => {
-  const gridWidth = document.getElementById("gridWidth").value;
-  // if(gridWidth > 100){
-  //   alert("El tamaÃ±o maximo del tablero es de 100.");
-  // }else if (gridWidth > 0 && gridWidth < 100){
-  cells = allCells(gridWidth);
-  cellsGridHTML(gridWidth);
-  document.getElementById("buttons").style.display = "flex";
-  document.getElementById("mainMenu").style.display = "none";
-  stop = false;
-  // }
+  if (document.getElementById("gridWidth").checkValidity()) {
+    const gridWidth = document.getElementById("gridWidth").value;
+    cells = allCells(gridWidth);
+    cellsGridHTML(gridWidth);
+    document.getElementById("buttons").style.display = "flex";
+    document.getElementById("mainMenu").style.display = "none";
+    stop = false;
+  }
 };
 
 const backMenu = () => {
@@ -186,33 +185,51 @@ const backMenu = () => {
   document.getElementById("stopLife").innerHTML = "Parar el tiempo";
   document.getElementById("gridWidth").value = "";
   document.getElementById("stopLife").style.display = "none";
+  document.getElementById("randomize").style.display = "inline";
 };
 
 const onKeyUpGridWidth = () => {
   const width = document.getElementById("gridWidth").value;
 
   if (width < 0) {
-      document.getElementById("gridWidth").value = "3";
+    document.getElementById("gridWidth").value = "3";
   }
-  if (width > 100) {
-      document.getElementById("gridWidth").value = "100";
+  if (width > 80) {
+    document.getElementById("gridWidth").value = "80";
   }
-}
+};
 
 const onChangeGridWidth = () => {
   const width = document.getElementById("gridWidth").value;
 
   if (width < 3) {
-      document.getElementById("gridWidth").value = "3";
+    document.getElementById("gridWidth").value = "3";
   }
-}
+};
+
+const randomizeCells = () => {
+  for (let index = 0; index < cells.length; index++) {
+    const randomZeroOrOne = Math.round(Math.random());
+    if (randomZeroOrOne === 1) {
+      cells[index].status = true;
+      document.querySelector(`[id^='${index}']`).classList.remove("td--dead");
+      document.querySelector(`[id^='${index}']`).classList.add("td--alive");
+    }
+  }
+};
 
 window.onload = () => {
   document.getElementById("stopLife").addEventListener("click", stopLife);
+  document
+    .getElementById("randomize")
+    .addEventListener("click", randomizeCells);
   document.getElementById("startLife").addEventListener("click", startLife);
   document.getElementById("createGrid").addEventListener("click", createGrid);
   document.getElementById("backMenu").addEventListener("click", backMenu);
-  document.getElementById("gridWidth").addEventListener("keyup", onKeyUpGridWidth)
-  document.getElementById("gridWidth").addEventListener("change", onChangeGridWidth)
+  document
+    .getElementById("gridWidth")
+    .addEventListener("keyup", onKeyUpGridWidth);
+  document
+    .getElementById("gridWidth")
+    .addEventListener("change", onChangeGridWidth);
 };
-
