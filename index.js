@@ -229,9 +229,13 @@ const checkNextCellStatus = (cellGrid) => {
 
 let stop = false;
 const stopLife = () => {
-  stop = true;
+  if (stop) {
+    stop = false;
+  } else {
+    stop = true;
+  }
 };
-let timer;
+
 const executionTime = 50;
 
 const createGrid = () => {
@@ -241,11 +245,10 @@ const createGrid = () => {
 };
 
 const startLife = () => {
-  stop = false;
   checkNeighbours(cells);
   checkNextCellStatus(cells);
   if (!stop) {
-    timer = setTimeout(startLife, executionTime);
+    setTimeout(startLife, executionTime);
   }
 };
 
