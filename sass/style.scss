@@ -1,17 +1,54 @@
 * {
   box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
 }
- 
-.cellsGrid{
-  &__table{
-    table{
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .title {
+    font-size: 40px;
+  }
+}
+
+.takeWidth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &__label {
+    font-size: medium;
+  }
+  &__input-text {
+    background-color: #7fefea;
+    padding: 10px;
+    border: none;
+  }
+  &__button {
+    background-color: #ca9df2;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+}
+
+.cellsGrid {
+  &__table {
+    table {
       border-spacing: 0;
     }
-    td{
+    td {
       border: 0.5px solid;
-      color:aqua;
+      color: aqua;
       width: 20px;
       height: 20px;
+      &--alive{
+        background-color: #ca9df2;
+        border-radius: 10px;
+      }
+      &--dead{
+        background-color: transparent;
+      }
     }
   }
 }
