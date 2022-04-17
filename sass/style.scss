@@ -52,3 +52,130 @@
     }
   }
 }
+* {
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .title {
+    font-size: 40px;
+  }
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  background: linear-gradient(
+    124deg,
+    #ff2400,
+    #e81d1d,
+    #e8b71d,
+    #e3e81d,
+    #1de840,
+    #1ddde8,
+    #2b1de8,
+    #dd00f3,
+    #dd00f3,
+  );
+  background-size: 1800% 1800%;
+
+  -webkit-animation: rainbow 18s ease infinite;
+  -z-animation: rainbow 18s ease infinite;
+  -o-animation: rainbow 18s ease infinite;
+  animation: rainbow 18s ease infinite;
+}
+
+@-webkit-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@-moz-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@-o-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+
+.takeWidth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &__label {
+    font-size: medium;
+  }
+  &__input-text {
+    background-color: #7fefea;
+    padding: 10px;
+    border: none;
+  }
+  &__button {
+    background-color: #ca9df2;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+}
+
+.cellsGrid {
+  &__table {
+    table {
+      border-spacing: 0;
+    }
+    td {
+      border: 0.5px solid;
+      color: aqua;
+      width: 20px;
+      height: 20px;
+    }
+    .td--alive {
+      background-color: #ca9df2;
+      border-radius: 10px;
+    }
+    .td--dead {
+      background-color: transparent;
+    }
+  }
+}
