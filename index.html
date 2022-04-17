@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+      rel="stylesheet"
+    />
     <script src="index.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
     <title>Juego de la Vida</title>
   </head>
   <body>
     <main class="container wrapper">
       <h1 class="title">Juego de la vida</h1>
-      <section class="takeWidth">
-        <label class="takeWisth__label" for="gridWidth" for="cellGrid"
+      <section id="mainMenu" class="takeWidth">
+        <label class="takeWidth__label" for="gridWidth" for="cellGrid"
           >Intruce el ancho del bioma y disfruta</label
         >
         <input
@@ -25,14 +28,25 @@
           placeholder="Valor entre 3 y 100"
           id="gridWidth"
         />
-        <button class="takeWisth__button" onclick="createGrid()" type="button">Crear</button>
+        <button class="takeWidth__button" id="createGrid" type="button">
+          Crear
+        </button>
       </section>
       <div class="cellsGrid">
         <div class="cellsGrid__table" id="cellsGridHTML"></div>
-        <button class="cellsGrid__button--startLife" onclick="startLife()" id="starLife">Que empiece la vida!</button>
-        <button class="cellsGrid__button--stopLife" onclick="stopLife()" id="stopLife">Parar el tiempo</button>
+        <table></table>
+        <div class="cellsGrid__buttons" id="buttons">
+          <button class="buttons__button buttons__button--startLife" id="startLife">
+            Que empiece la vida!
+          </button>
+          <button class="buttons__button buttons__button--stopLife" id="stopLife">
+            Parar el tiempo
+          </button>
+          <button class="buttons__button buttons__button--backMenu" id="backMenu">
+            Volver al menu
+          </button>
+        </div>
       </div>
     </main>
-    <table></table>
   </body>
 </html>

@@ -38,10 +38,6 @@ function bornCellsClick() {
 }
 
 const cellsGridHTML = (cellGrid) => {
-  const initialGrid = document.getElementById("cellGridContainer");
-  if (initialGrid !== null) {
-    initialGrid.innerHTML = "";
-  }
   const newGrid = document.createElement("table");
   newGrid.setAttribute("id", "cellGridContainer");
   let cellIndex = 0;
@@ -65,46 +61,46 @@ const checkNeighbours = (cellGrid) => {
   for (let index = 0; index < cellGrid.length; index++) {
     const cellNow = cellGrid[index];
     let aliveNeighbours = 0;
-    if (typeof cellGrid[index - 1] !== "undefined") {
+    if (cellNow.y !== 0) {
       if (cellGrid[index - 1].status) {
         aliveNeighbours++;
       }
     }
-    if (typeof cellGrid[index - cellGridWidth] !== "undefined") {
+    if (cellNow.x !== 0) {
       if (cellGrid[index - cellGridWidth].status) {
         aliveNeighbours++;
       }
     }
 
-    if (typeof cellGrid[index + 1] !== "undefined") {
+    if (cellNow.y !== cellGridWidth - 1) {
       if (cellGrid[index + 1].status) {
         aliveNeighbours++;
       }
     }
 
-    if (typeof cellGrid[index + cellGridWidth] !== "undefined") {
+    if (cellNow.x !== cellGridWidth - 1) {
       if (cellGrid[index + cellGridWidth].status) {
         aliveNeighbours++;
       }
     }
 
-    if (typeof cellGrid[index - cellGridWidth - 1] !== "undefined") {
+    if (cellNow.x !== 0 && cellNow.y !== 0) {
       if (cellGrid[index - cellGridWidth - 1].status) {
         aliveNeighbours++;
       }
     }
 
-    if (typeof cellGrid[index - cellGridWidth + 1] !== "undefined") {
+    if (cellNow.x !== 0 && cellNow.y !== cellGridWidth - 1) {
       if (cellGrid[index - cellGridWidth + 1].status) {
         aliveNeighbours++;
       }
     }
-    if (typeof cellGrid[index + cellGridWidth - 1] !== "undefined") {
+    if (cellNow.y !== 0 && cellNow.x !== cellGridWidth - 1) {
       if (cellGrid[index + cellGridWidth - 1].status) {
         aliveNeighbours++;
       }
     }
-    if (typeof cellGrid[index + cellGridWidth + 1] !== "undefined") {
+    if (cellNow.x !== cellGridWidth - 1 && cellNow.y !== cellGridWidth - 1) {
       if (cellGrid[index + cellGridWidth + 1].status) {
         aliveNeighbours++;
       }
@@ -119,12 +115,16 @@ const checkNextCellStatus = (cellGrid) => {
     if (cellNow.status) {
       if (cellNow.aliveNeighbours < 2) {
         cellNow.status = false;
-        document.querySelector(`[id^='${index}']`).classList.remove("td--alive");
+        document
+          .querySelector(`[id^='${index}']`)
+          .classList.remove("td--alive");
         document.querySelector(`[id^='${index}']`).classList.add("td--dead");
       }
       if (cellNow.aliveNeighbours > 3) {
         cellNow.status = false;
-        document.querySelector(`[id^='${index}']`).classList.remove("td--alive");
+        document
+          .querySelector(`[id^='${index}']`)
+          .classList.remove("td--alive");
         document.querySelector(`[id^='${index}']`).classList.add("td--dead");
       }
     }
@@ -139,32 +139,80 @@ const checkNextCellStatus = (cellGrid) => {
 };
 
 let stop = false;
+let timer;
+const executionTime = 100;
+
+const startLife = () => {
+  if (!stop) {
+    timer = setTimeout(startLife, executionTime);
+    checkNeighbours(cells);
+    checkNextCellStatus(cells);
+    document.getElementById("startLife").style.display = "none";
+    document.getElementById("stopLife").style.display = "inline";
+  }
+};
+
 const stopLife = () => {
   if (stop) {
     stop = false;
+    document.getElementById("stopLife").innerHTML = "Parar";
+    startLife();
   } else {
     stop = true;
+    document.getElementById("stopLife").innerHTML = "Continuar";
+    clearInterval(timer);
   }
 };
-
-const executionTime = 100;
 
 const createGrid = () => {
   const gridWidth = document.getElementById("gridWidth").value;
+  // if(gridWidth > 100){
+  //   alert("El tamaÃ±o maximo del tablero es de 100.");
+  // }else if (gridWidth > 0 && gridWidth < 100){
   cells = allCells(gridWidth);
   cellsGridHTML(gridWidth);
+  document.getElementById("buttons").style.display = "block";
+  document.getElementById("mainMenu").style.display = "none";
+  stop = false;
+  // }
 };
 
-const startLife = () => {
-  checkNeighbours(cells);
-  checkNextCellStatus(cells);
-  if (!stop) {
-    setTimeout(startLife, executionTime);
+const backMenu = () => {
+  document.getElementById("mainMenu").style.display = "flex";
+  document.getElementById("buttons").style.display = "none";
+  document.getElementById("cellGridContainer").remove();
+  stop = true;
+  document.getElementById("startLife").style.display = "";
+  document.getElementById("stopLife").innerHTML = "Parar";
+  document.getElementById("gridWidth").value = "";
+  document.getElementById("stopLife").style.display = "none";
+};
+
+const onKeyUpGridWidth = () => {
+  const width = document.getElementById("gridWidth").value;
+
+  if (width < 0) {
+      document.getElementById("gridWidth").value = "3";
   }
+  if (width > 100) {
+      document.getElementById("gridWidth").value = "100";
+  }
+}
+
+const onChangeGridWidth = () => {
+  const width = document.getElementById("gridWidth").value;
+
+  if (width < 3) {
+      document.getElementById("gridWidth").value = "3";
+  }
+}
+
+window.onload = () => {
+  document.getElementById("stopLife").addEventListener("click", stopLife);
+  document.getElementById("startLife").addEventListener("click", startLife);
+  document.getElementById("createGrid").addEventListener("click", createGrid);
+  document.getElementById("backMenu").addEventListener("click", backMenu);
+  document.getElementById("gridWidth").addEventListener("keyup", onKeyUpGridWidth)
+  document.getElementById("gridWidth").addEventListener("change", onChangeGridWidth)
 };
 
-Window.onload = () => {
-  document.getElementById("stopLife").addEventListener("click", stopLife());
-  document.getElementById("startLife").addEventListener("click", startLife());
-  document.getElementById("createGrid").addEventListener("click", createGrid());
-};
