@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <script src="index.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
@@ -22,12 +25,12 @@
           placeholder="Valor entre 3 y 100"
           id="gridWidth"
         />
-        <button onclick="createGrid()" type="button">Crear</button>
+        <button class="takeWisth__button" onclick="createGrid()" type="button">Crear</button>
       </section>
       <div class="cellsGrid">
         <div class="cellsGrid__table" id="cellsGridHTML"></div>
-        <button class="cellsGrid__button--startLife" onclick="startLife()">Que empiece la vida!</button>
-        <button class="cellsGrid__button--stopLife" onclick="stopLife()">Parar el tiempo</button>
+        <button class="cellsGrid__button--startLife" onclick="startLife()" id="starLife">Que empiece la vida!</button>
+        <button class="cellsGrid__button--stopLife" onclick="stopLife()" id="stopLife">Parar el tiempo</button>
       </div>
     </main>
     <table></table>
